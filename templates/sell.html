@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!----------------------------------------------------------------- HEAD SECTION ------------------------------------------------------------------------->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+
+    <!-- Link to icon from Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+
+    <!-- Link to Additional form css-->
+    <link rel="stylesheet" href="../static/css/buy_style.css">
+
+    <!-- Chart lightweight Documentation : https://github.com/tradingview/lightweight-charts -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+    <title>TradeBIT50 sell page</title>
+  </head>
+  <body>
+    <!----------------------------------------------------------------- ALARM SECTION ------------------------------------------------------------------------->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+          {% for message in messages %}
+              <div class="flash-message">{{ message }}</div>
+          {% endfor %}
+      </div>
+    {% endif %}
+    {% endwith %}
+
+    <!----------------------------------------------------------------- TOP NAVIGATION BAR SECTION ------------------------------------------------------------------------->
+    <!-- top navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <div class="navbar-brand me-auto ms-lg-0 ms-3 fw-bold">
+          <img
+            src="../static/picture/duckbitcoin.png"
+            width="30"
+            class="bi me-2"
+          />
+          <span class="fs-4 fw-bold text-warning"> TradeBit<span style="color: red;">50</span></span>
+        </div>
+
+        <div class="collapse navbar-collapse" id="topNavBar">
+          
+          <!-- Logout Button -->
+          <div class="d-flex ms-auto my-3 my-lg-0">
+            <button
+              type="button"
+              class="btn btn-primary btn-warning px-3"
+              style="color: white"
+            >
+              <a href="./login" style="color: inherit">Log out</a>
+            </button>
+          </div>
+
+          <!-- Show user -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle ms-2"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-fill"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item">{{ user }}</a></li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <!----------------------------------------------------------------- SIDEBAR SECTION ------------------------------------------------------------------------->
+    <div
+      class="offcanvas offcanvas-start sidebar-nav bg-dark"
+      tabindex="-1"
+      id="sidebar"
+    >
+      <div class="offcanvas-body p-0">
+        <nav class="navbar-dark">
+          <ul class="navbar-nav">
+
+            <li style="margin-top: 20px;"> 
+            
+            <!-- Header -->
+            <li>
+              <div class="text-muted small fw-bold text-uppercase px-3">
+                Visualization
+              </div>
+            </li>
+
+            <!-- Visualize menu-->
+            <li>
+              <a href="./" class="nav-link px-3">
+                <span class="me-3"><img src="../static/picture/pie-chart.png" height="20">
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
+            <li>
+              <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                Transaction
+              </div>
+            </li>
+
+            <!-- Buy Page -->
+            <li>
+              <a href="./buy" class="nav-link px-3">
+                <span class="me-2"><img src="../static/picture/buy.png" height="20"></span>
+                <span>Buy</span>
+              </a>
+            </li>
+
+            <!-- Sell Page -->
+            <li>
+              <a href="./sell" class="nav-link px-3 active">
+                <span class="me-2"><img src="../static/picture/sell.png" height="20"></span>
+                <span>Sell</span>
+              </a>
+            </li>
+
+            <!-- Add Cash Page -->
+            <li>
+              <a href="./addcash" class="nav-link px-3">
+                <span class="me-2"><img src="../static/picture/add.png" height="20"></span>
+                <span>Add Cash</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!----------------------------------------------------------------- CANVAS SECTION ------------------------------------------------------------------------->
+    <main class="mt-5 pt-3">
+
+      <!----------------------------------------------------------------- SELL FORM SECTION ------------------------------------------------------------------------->
+      <main class="form-signin w-100 m-auto mt-5">
+
+        <!-- SELL/POST -->
+        <form action="/sell" method="post">
+          <img class="mb-4" src="../static/picture/sell.png" alt="" height="100">
+          <h1 class="h3 mb-3 fw-bold">Sell Transaction</h1>
+      
+          <div class="form-floating">
+            <input name="coin" type="number" class="form-control" id="floatingInput" placeholder="1000">
+            <label for="floatingInput">Sell coins here</label>
+          </div>
+
+          <button class="btn btn-warning w-100 py-2" type="submit">Confirm</button>
+        </form>
+      </main>
+
+      <!----------------------------------------------------------------- FOOTER SECTION ------------------------------------------------------------------------->
+      <section id = "footer">
+        <div class="container">
+          <footer class="py-3 my-4">
+            <p class="pl-auto text-center text-body-secondary">© 2023 Burased Baworncharoenpun, CS50 Final Project</p>
+          </footer>
+        </div>
+      </section>
+
+    </main>
+
+    <!----------------------------------------------------------------- SCRIPT SECTION ------------------------------------------------------------------------->
+    <script>
+      // Binance API Documentation : https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md
+      // The base endpoint is: wss://stream.binance.com:9443
+      var binanceSocket = new WebSocket(
+        "wss://stream.binance.com:9443/ws/btcusdt@trade"
+      );
+      var tradeDiv = document.getElementById("trades");
+
+      // Websocket Doc : https://www.tutorialspoint.com/websockets/websockets_send_receive_messages.htm
+      binanceSocket.onmessage = function (event) {
+        console.log(event.data);
+        var messageObject = JSON.parse(event.data);
+      };
+    </script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="../static/js/jquery-3.5.1.js"></script>
+    <script src="../static/js/jquery.dataTables.min.js"></script>
+    <script src="../static/js/dataTables.bootstrap5.min.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!----------------------------------------------------------------- HEAD SECTION ------------------------------------------------------------------------->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TradeBIT50 register page</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+
+
+  </head>
+  <!----------------------------------------------------------------- BODY SECTION ------------------------------------------------------------------------->
+
+  <body>
+
+    <!----------------------------------------------------------------- ALARM SECTION ------------------------------------------------------------------------->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+          {% for message in messages %}
+              <div class="flash-message">{{ message }}</div>
+          {% endfor %}
+      </div>
+    {% endif %}
+    {% endwith %}
+
+    <!----------------------------------------------------------------- NAVBAR SECTION ------------------------------------------------------------------------->
+    <section id="navbar">
+      <div class="container">
+        <header
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+          <!-- Logo -->
+          <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+              <img src="../static/picture/duckbitcoin.png" width=40 class="bi me-2">
+              <span class="fs-4 fw-bold text-warning"> TradeBit<span style="color: red;">50</span></span>
+            </a>
+          </div>
+
+          <!-- Menu -->
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 text-dark">CS50s Final Project Burased</a></li>
+          </ul>
+
+          <!-- Button -->
+          <div class="col-md-3 text-end">
+            <!-- Login page -->
+            <button type="button" class="btn btn-outline-primary btn-outline-warning me-2"><a href="./login" style="color: inherit">Login</a></button>
+            <!-- Singup page -->
+            <button type="button" class="btn btn-primary btn-warning px-3" style = "color : white;"><a href="./register" style="color: inherit">Sign-up</a></button>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <!----------------------------------------------------------------- DETAIL SECTION ------------------------------------------------------------------------->
+    <section id="detail">
+
+      <div class="px-4 pt-5 my-5 text-center border-bottom gradient-background">
+        <img class="d-block mx-auto mb-4" src="../static/picture/duckbitcoin.png" alt="" width="100">
+        <h1 class="display-4 fw-bold text-warning">Trade Bitcoin with <span style="color:red">Simulated</span> money</h1>
+
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">
+            Simulated Bitcoin cryptocurrency trading platform that enables users with little to no trading experience to engage in risk-free trading using virtual funds. The real-time Bitcoin price and candlestick chart data are sourced from the Binance API, providing users with the ability to visualize the dynamic Bitcoin graph in real-time. Drawing inspiration from platforms like Binance and TradingView, this project is designed to encourage individuals who may be hesitant or fearful of trading to gain hands-on experience in a safe and supportive environment.
+          </p>
+        </div>
+        <div class="overflow-hidden" style="max-height: 30vh;">
+          <div class="container px-5">
+            <img src="../static/picture/Example_TradeBit50.PNG" class="img-fluid border rounded-3 shadow-lg mb-4"
+              alt="Example image" width="700" height="500" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!----------------------------------------------------------------- FEATURES SECTION ------------------------------------------------------------------------->
+    <section id = "Features">
+      <div class="container px-4 py-5" id="featured-3">
+        <h2 class="pb-2 border-bottom">What's tools this project used?</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+
+          <div class="feature col">
+            <div class="fs-2 mb-4">
+              <img src="../static/picture/Binance_Logo.png" height="50">
+            </div>
+            <h3 class="fs-2 text-body-emphasis">Binance API</h3>
+            <p>Utilizing the BTCUSDT JSON data from the Binance API to reflect the real-time price of Bitcoin.</p>
+            <a href="https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md" class="icon-link">
+              For more detials
+              <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+            </a>
+          </div>
+
+          <div class="feature col">
+            <div class="fs-2 mb-4">
+              <img src="../static/picture/Tradingview-Logo.png" height="40">
+            </div>
+            <h3 class="fs-2 text-body-emphasis">TradingView Chart</h3>
+            <p>Utilizing the TradingView Candlestick chart sourced from the TradingView github, seamlessly integrated with the Binance API and configured with a 5-minute time interval.</p>
+            <a href="https://github.com/tradingview/lightweight-charts" class="icon-link">
+              For more detials
+              <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+            </a>
+          </div>
+
+          <div class="feature col">
+            <div class="fs-2 mb-1">
+              <img src="../static/picture/chartjs.png" height="60">
+            </div>
+            <h3 class="fs-2 text-body-emphasis">Chart.js</h3>
+            <p>Employing the Chart.js JavaScript library for crafting the dashboard template, enhancing visualizations and ensuring a clean and user-friendly interface.</p>
+            <a href="https://github.com/frontendfunn/bootstrap-5-admin-dashboard-template" class="icon-link">
+              For more detials
+              <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!----------------------------------------------------------------- REGISTER SECTION ------------------------------------------------------------------------->
+
+    <section id="transaction-login">
+      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Ready to join with us? Let's sign in</h1>
+            <p class="col-lg-10 fs-4">This project serves as the CS50 Final Project, designed primarily for educational purposes. Due to security considerations related to the Binance API, deployment of the project is restricted. Users interested in testing the application on their local machines are encouraged to create and use their own Binance API key and API secret for authentication.</p>
+          </div>
+
+          <!-- Linking to Backend here -->
+          <div class="col-md-10 mx-auto col-lg-5 ">
+            <form action = "/register" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+
+              <!-- name="username" -->
+              <div class="form-floating mb-3">
+                <input name="username" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+              </div>
+
+              <!-- name="password" -->
+              <div class="form-floating mb-3">
+                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+
+              <!-- name="confirmation" -->
+              <div class="form-floating mb-3">
+                <input name="confirmation" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Confirm Password</label>
+              </div>
+
+              <!-- name="SUBMIT/POST" -->
+              <button class="w-100 btn btn-lg btn-primary btn-warning " type="submit">Sign up</button>
+              <hr class="my-4">
+              <small class="text-body-secondary">Please use the fake email and password</small>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  
+    <!----------------------------------------------------------------- FOOTER SECTION ------------------------------------------------------------------------->
+    <section id = "footer">
+      <div class="container">
+        <footer class="py-3 my-4">
+          <p class="text-center text-body-secondary">© 2023 Burased Baworncharoenpun, CS50 Final Project</p>
+        </footer>
+      </div>
+    </section>
+
+  </body>
+</html>
