@@ -1,5 +1,5 @@
 # TradeBit50 - Simulated Bitcoin Trading Platform
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/b9yccGeCkqQ?si=0a0g4fnnX3p_A0oB
 
 
 ## Description:
